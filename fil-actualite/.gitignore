@@ -1,0 +1,23 @@
+# Configuration locale et secrets
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Données locales
+*.db
+*.sqlite3
+uploads/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+
+# Système et éditeurs
+.DS_Store
+.idea/
+.vscode/
