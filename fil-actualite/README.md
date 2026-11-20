@@ -76,6 +76,6 @@ Les fichiers `docker-compose.yml` et `.env.example` seront ajoutés avec les pre
 
 | Membre | Responsabilité principale |
 | --- | --- |
-| Falcao Felipe | UI, Users, sécurité |
-| Abdallah Alex | Posts, photos |
+| Abdallah Alex | UI, Users, sécurité |
+| Falcao Felipe | Posts, photos |
 | Caramella Enzo | Feed, conteneurs, infrastructure, intégration |

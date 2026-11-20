@@ -4,8 +4,8 @@ Le projet est découpé en trois parties, une par membre. Chaque partie couvre l
 
 | Partie | Membre | Périmètre | Dossiers |
 | --- | --- | --- | --- |
-| 1 | Falcao Felipe | UI, Users, sécurité | `ui/`, `users/` |
-| 2 | Abdallah Alex | Posts, photos | `posts/` |
+| 1 | Abdallah Alex | UI, Users, sécurité | `ui/`, `users/` |
+| 2 | Falcao Felipe | Posts, photos | `posts/` |
 | 3 | Caramella Enzo | Feed, conteneurs, infrastructure, intégration des trois parties | `feed/`, `infra/`, `docker-compose.yml`, `.env.example` |
 
 ## Conventions communes
@@ -23,7 +23,7 @@ Ces règles sont fixées par la partie 3 dès la première séance, pour que les
 | Structure d'un service | `app.py`, `storage.py`, `auth.py`, `requirements.txt`, `Dockerfile`. |
 | Santé | `GET /health` renvoie `{"status": "ok"}` sans authentification. |
 
-## Partie 1 : Felipe (UI, Users, sécurité)
+## Partie 1 : Alex (UI, Users, sécurité)
 
 ### Users
 
@@ -32,7 +32,7 @@ Ces règles sont fixées par la partie 3 dès la première séance, pour que les
 - [ ] `POST /login` : vérifier le mot de passe et renvoyer un JWT signé.
 - [ ] `PUT /me/password` : exiger l'ancien mot de passe avant de le changer.
 - [ ] `GET /users/{id}`, `GET /users?ids=1,2`, `GET /users?search=nom`, sans jamais renvoyer `password_hash`.
-- [ ] Écrire `auth.py` (décorateur qui vérifie le JWT et expose l'identifiant de l'utilisateur) et le transmettre à Alex et Enzo **dès l'étape A**.
+- [ ] Écrire `auth.py` (décorateur qui vérifie le JWT et expose l'identifiant de l'utilisateur) et le transmettre à Felipe et Enzo **dès l'étape A**.
 
 ### UI
 
@@ -54,12 +54,12 @@ Ces règles sont fixées par la partie 3 dès la première séance, pour que les
 
 **Résultat à vérifier :** je m'inscris, je me connecte, je change mon mot de passe et je me déconnecte, uniquement via `localhost:8000`.
 
-## Partie 2 : Alex (Posts, photos)
+## Partie 2 : Felipe (Posts, photos)
 
 ### Publications
 
 - [ ] Créer l'application Flask, son `Dockerfile` et `storage.py` avec la table `posts` (SQLite).
-- [ ] Intégrer `auth.py` fourni par Felipe. En attendant, générer un jeton de test avec le même `JWT_SECRET`.
+- [ ] Intégrer `auth.py` fourni par Alex. En attendant, générer un jeton de test avec le même `JWT_SECRET`.
 - [ ] `POST /posts` : l'auteur vient du jeton, jamais du corps de la requête. Vérifier la longueur du texte.
 - [ ] `GET /posts?authors=1,2&limit=50` : publications triées de la plus récente à la plus ancienne, `limit` plafonné.
 - [ ] Indiquer dans chaque publication si elle a une photo, pour que UI sache l'afficher.
@@ -76,7 +76,7 @@ Ces règles sont fixées par la partie 3 dès la première séance, pour que les
 
 - [ ] Adapter `storage.py` de Posts à DynamoDB : clé de partition `author_id`, clé de tri `created_at`.
 - [ ] Passer `images.py` sur un bucket S3 privé avec `boto3`.
-- [ ] Préparer un exemple d'accès DynamoDB et aider Felipe et Enzo à adapter leur propre `storage.py`.
+- [ ] Préparer un exemple d'accès DynamoDB et aider Alex et Enzo à adapter leur propre `storage.py`.
 - [ ] Optionnel : publier un événement « publication créée » vers SQS ou EventBridge, avec Enzo.
 
 **Résultat à vérifier :** je publie un texte avec une photo et je le retrouve sur mon profil, photo comprise.
@@ -110,7 +110,7 @@ Ces règles sont fixées par la partie 3 dès la première séance, pour que les
 - [ ] Adapter `storage.py` de Feed à DynamoDB : clé de partition `follower_id`, clé de tri `followed_id`.
 - [ ] Terraform dans `infra/` : dépôts ECR, cluster ECS Fargate, une définition de tâche et un service par composant.
 - [ ] Répartiteur de charge vers UI uniquement, découverte de services (Cloud Map) pour les appels internes.
-- [ ] Tables DynamoDB, bucket S3 et journaux CloudWatch, avec Alex pour les données et Felipe pour les droits IAM.
+- [ ] Tables DynamoDB, bucket S3 et journaux CloudWatch, avec Felipe pour les données et Alex pour les droits IAM.
 - [ ] Optionnel : Feed consomme les événements de Posts et prépare les fils à l'avance.
 
 **Résultat à vérifier :** je suis un autre utilisateur et mon accueil affiche ses publications dans l'ordre, en local puis sur AWS.
@@ -119,14 +119,14 @@ Ces règles sont fixées par la partie 3 dès la première séance, pour que les
 
 ```mermaid
 flowchart LR
-    S[Socle Compose<br/>Enzo] --> A[A - Comptes<br/>Felipe]
-    A -->|auth.py| B[B - Publications<br/>Alex]
+    S[Socle Compose<br/>Enzo] --> A[A - Comptes<br/>Alex]
+    A -->|auth.py| B[B - Publications<br/>Felipe]
     A -->|auth.py| C[C - Abonnements<br/>Enzo]
     B -->|GET /posts?authors| D[D - Fil<br/>Enzo]
     C --> D
-    B --> E[E - Photos<br/>Alex]
+    B --> E[E - Photos<br/>Felipe]
     D --> I[Intégration<br/>Enzo]
     E --> I
 ```
 
-Alex et Enzo peuvent commencer Posts et Feed sans attendre la fin de l'étape A, grâce aux contrats d'API et à un jeton de test signé avec le même `JWT_SECRET`. Felipe ajoute les pages UI au fur et à mesure que les API sont disponibles.
+Felipe et Enzo peuvent commencer Posts et Feed sans attendre la fin de l'étape A, grâce aux contrats d'API et à un jeton de test signé avec le même `JWT_SECRET`. Alex ajoute les pages UI au fur et à mesure que les API sont disponibles.

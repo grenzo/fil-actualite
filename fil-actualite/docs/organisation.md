@@ -6,9 +6,9 @@ Cette organisation suit l'ordre de réalisation du guide de démarrage. Chaque m
 
 | Rôle | Membre | Responsabilité principale | Binôme de relecture |
 | --- | --- | --- | --- |
-| Membre 1 | Falcao Felipe | UI, Users, sécurité | Abdallah Alex |
-| Membre 2 | Abdallah Alex | Posts, photos | Caramella Enzo |
-| Membre 3 | Caramella Enzo | Feed, conteneurs, infrastructure, intégration des trois parties | Falcao Felipe |
+| Membre 1 | Abdallah Alex | UI, Users, sécurité | Falcao Felipe |
+| Membre 2 | Falcao Felipe | Posts, photos | Caramella Enzo |
+| Membre 3 | Caramella Enzo | Feed, conteneurs, infrastructure, intégration des trois parties | Abdallah Alex |
 
 Le membre 3 assure aussi l'intégration : il fixe les conventions communes, fusionne les pull requests et vérifie que le parcours complet fonctionne après chaque fusion.
 
