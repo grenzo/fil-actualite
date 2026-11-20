@@ -70,11 +70,12 @@ Les fichiers `docker-compose.yml` et `.env.example` seront ajoutés avec les pre
 
 - [Architecture détaillée](docs/architecture.md)
 - [Organisation de l'équipe](docs/organisation.md)
+- [Répartition des tâches](docs/taches.md)
 
 ## Équipe
 
 | Membre | Responsabilité principale |
 | --- | --- |
-| Abdallah Alex | UI, Users, sécurité |
-| Falcao Felipe | Posts, photos |
-| Caramella Enzo | Feed, conteneurs, infrastructure |
+| Falcao Felipe | UI, Users, sécurité |
+| Abdallah Alex | Posts, photos |
+| Caramella Enzo | Feed, conteneurs, infrastructure, intégration |

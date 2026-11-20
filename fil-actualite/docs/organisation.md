@@ -1,14 +1,16 @@
 # Organisation de l'équipe
 
-Cette organisation suit l'ordre de réalisation du guide de démarrage. Chaque membre porte un périmètre, mais tout le monde reste capable de lire et de relire le code des autres.
+Cette organisation suit l'ordre de réalisation du guide de démarrage. Chaque membre porte un périmètre, mais tout le monde reste capable de lire et de relire le code des autres. Le détail des tâches de chacun est dans [taches.md](taches.md).
 
 ## Rôles
 
-| Membre | Responsabilité principale | Binôme de relecture |
-| --- | --- | --- |
-| Abdallah Alex | UI, Users, sécurité | Falcao Felipe |
-| Falcao Felipe | Posts, photos | Caramella Enzo |
-| Caramella Enzo | Feed, conteneurs, infrastructure | 
+| Rôle | Membre | Responsabilité principale | Binôme de relecture |
+| --- | --- | --- | --- |
+| Membre 1 | Falcao Felipe | UI, Users, sécurité | Abdallah Alex |
+| Membre 2 | Abdallah Alex | Posts, photos | Caramella Enzo |
+| Membre 3 | Caramella Enzo | Feed, conteneurs, infrastructure, intégration des trois parties | Falcao Felipe |
+
+Le membre 3 assure aussi l'intégration : il fixe les conventions communes, fusionne les pull requests et vérifie que le parcours complet fonctionne après chaque fusion.
 
 ## Étapes
 
